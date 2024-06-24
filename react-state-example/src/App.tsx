@@ -1,10 +1,13 @@
 import { StateWithReducer } from "./components/StateWithReducer";
+import { TodoFrom } from "./components/Todo/TodoFrom";
+import TodoProvider from "./context/TodoProvider";
 
 function App() {
   return (
-    <>
-      <StateWithReducer />
-    </>
+    <TodoProvider>
+      {/* <StateWithReducer /> */}
+      <TodoFrom />
+    </TodoProvider>
   );
 }
 

@@ -1,11 +1,25 @@
-import { useReducer } from "react";
+import { ChangeEvent, useReducer } from "react";
 
 const initialState = {
   name: "",
   age: "",
-  hobbies: [],
+  hobbies: [] as string[],
 };
-const reducer = (currentState, action) => {
+
+type TInitialState = {
+  name: string;
+  age: string;
+  hobbies: string[];
+};
+type TAction =
+  | { type: "addName"; payload: string }
+  | { type: "addAge"; payload: string }
+  | { type: "addHobbies"; payload: string };
+
+const reducer = (
+  currentState: TInitialState,
+  action: TAction
+): TInitialState => {
   switch (action.type) {
     case "addName":
       return {
@@ -24,17 +38,22 @@ const reducer = (currentState, action) => {
       };
 
     default:
-      break;
+      return currentState;
   }
 };
 
 export const StateWithReducer = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log({ state });
+
+  const handelSubmit = (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(state);
+  };
   return (
     <>
       <form
         action=""
+        onSubmit={handelSubmit}
         className="w-[80vw] mx-auto h-[50vh] my-auto border-red-200 border mt-10 p-32"
       >
         <input
@@ -48,7 +67,7 @@ export const StateWithReducer = () => {
           }
         />
         <input
-          type="text"
+          type="number"
           name="age"
           id="age"
           placeholder="age"
