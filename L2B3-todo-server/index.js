@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const uri = `mongodb://localhost:27017`;
+const uri = `mongodb://localhost:27017/todo`;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,

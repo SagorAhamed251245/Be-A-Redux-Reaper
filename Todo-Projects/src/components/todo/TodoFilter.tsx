@@ -10,8 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-const TodoFilter = () => {
-  const [priority, setPriority] = useState("high");
+const TodoFilter = ({ priority, setPriority }) => {
   return (
     <div>
       <DropdownMenu>

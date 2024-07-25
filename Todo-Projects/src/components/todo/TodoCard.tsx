@@ -7,7 +7,8 @@ type TTodoes = {
     title: string;
     description: string;
     isCompleted?: boolean;
-    id: string;
+    _id: string;
+    priority: string;
   };
 };
 const TodoCard = ({ item }: TTodoes) => {
@@ -17,8 +18,9 @@ const TodoCard = ({ item }: TTodoes) => {
   };
   return (
     <div className="flex items-center justify-between p-3 bg-white border rounded-md">
-      <input onChange={() => toggleState(item.id)} type="checkbox" />
+      <input onChange={() => toggleState(item._id)} type="checkbox" />
       <p className="font-bold"> {item.title}</p>
+      <p className="font-bold"> {item?.priority}</p>
       {/* <p>Time</p> */}
       <div className="w-32">
         {item.isCompleted ? (
@@ -30,7 +32,7 @@ const TodoCard = ({ item }: TTodoes) => {
       <p>{item.description}</p>
       <div className="space-x-5 ">
         <Button
-          onClick={() => dispatch(removeTodo(item.id))}
+          onClick={() => dispatch(removeTodo(item._id))}
           className="bg-red-500"
         >
           <svg
